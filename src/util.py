@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 '''
-    Purpose: help functoin for pharmcy_counting.py
+    Purpose: help function for pharmacy_counting.py
 
     Usage: python ./src/pharmacy_counting.py ./input/itcont.txt ./output/top_cost_drug.txt
 '''
@@ -41,10 +41,13 @@ def process_info(line, didx, cidx, pidx):
 
 
 def get_output_from_dict(drug_dict):
-    """Produce file lines for drug dictionary. the total number of UNIQUE individuals who prescribed the medication, and the total drug cost, which must be listed in descending order based on the total drug cost and if there is a tie, drug name in ascending order.
+    """Produce file lines for drug dictionary.
+    the total number of UNIQUE individuals who prescribed the medication,
+    and the total drug cost, which must be listed in descending order based on the total drug cost
+    and if there is a tie, drug name in ascending order.
 
     Keyword arguments:
-    drug_dict -- a dictionary contains drug name, prescribers, and total cost.
+    drug_dict -- a dictionary contains drug name, patient, and total cost.
 
     >>> get_output_from_dict({"AMBIEN": [set(["Smith:James", "Lee:High"]), 300]})
     [['AMBIEN', 2, 300]]
@@ -56,8 +59,8 @@ def get_output_from_dict(drug_dict):
     [['AMBIEN', 2, 300], ['CCC', 2, 200]]
     """
     drug_list = []
-    for drug, inf in drug_dict.iteritems():
-        drug_list.append([drug, len(inf[0]), inf[1]])
+    for drug, info in drug_dict.iteritems():
+        drug_list.append([drug, len(info[0]), info[1]])
     return sorted(drug_list, key=lambda x: (-x[2], x[0]))
 
 
